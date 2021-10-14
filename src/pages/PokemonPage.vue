@@ -16,6 +16,11 @@
         />
 
     </div>
+
+    <template v-if="showAnswer">
+      <h2 class="fade-in">{{ message }}</h2>
+      <button @click="newGame">Nuevo juego</button>
+    </template>
     
 </template>
 
@@ -35,6 +40,8 @@ export default {
       pokemonArr: [],
       pokemon: null,
       showPokemon: false,
+      showAnswer: false,
+      message: ''
     }
   },
   methods: {
@@ -46,6 +53,20 @@ export default {
     },
     checkAnswer(pokemonId) {
       this.showPokemon = true
+      this.showAnswer = true
+
+      if( pokemonId === this.pokemon.id) {
+        this.message = `Correcto, ${this.pokemon.name}`
+      } else {
+        this.message = `Opps, era ${this.pokemon.name}`
+      }
+    },
+    newGame() {
+      this.showPokemon = false
+      this.showAnswer = false
+      this.pokemonArr = []
+      this.pokemon = null
+      this.mixPokemonArr()
     }
   },
   mounted() {

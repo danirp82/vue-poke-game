@@ -28,7 +28,7 @@
 import PokemonPicture from '@/components/PokemonPicture';
 import PokemonOptions from '@/components/PokemonOptions';
 
-import getOptions from '@/helpers/getOptions';
+import getPokemonOptions from '@/helpers/getPokemonOptions';
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async mixPokemonArr() {
-      this.pokemonArr = await getOptions()
+      this.pokemonArr = await getPokemonOptions()
 
       const rndInt = Math.floor( Math.random() * 4)
       this.pokemon = this.pokemonArr[rndInt]
